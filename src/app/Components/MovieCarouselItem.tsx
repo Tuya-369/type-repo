@@ -1,6 +1,7 @@
 import { MovieType } from "@/types";
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
+import { MovieTrailer } from "./MovieTrailer";
 export const MovieCarouselItem = ({ movie }: { movie: MovieType }) => {
   return (
     <div className="w-full">
@@ -27,7 +28,9 @@ export const MovieCarouselItem = ({ movie }: { movie: MovieType }) => {
           <div className="md:text-white md:w-[302px] pt-4">
             <p>{movie.overview}</p>
             <div className="flex p-4">
-              <button>{/* <MovieTrailer movieId={movie.id} /> */}</button>
+              <button>
+                <MovieTrailer movieId={movie.id} />
+              </button>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { MovieType } from "@/types";
 import { Star } from "lucide-react";
+
 export const Moviecart = ({ movie }: { movie: MovieType }) => {
   return (
     <div className="w-fit">

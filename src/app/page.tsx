@@ -1,13 +1,17 @@
 import Image from "next/image";
 import { Header } from "./Components/Header";
 import { MovieCarousel } from "./Components/MovieCarousel";
-import { Upcoming } from "./Components/Upcoming";
+import { UpcomingMovie } from "./Components/Upcoming";
+import { TopRated } from "./Components/TopRatting";
+import { Popular } from "./Components/Popular";
 
 export default function Home() {
   return (
-    <div>
+    <div className="container mx-auto overflow-hidden">
       <MovieCarousel />
-      <upComingMovie />
+      <UpcomingMovie />
+      <Popular />
+      <TopRated />
     </div>
   );
 }
