@@ -1,8 +1,6 @@
 import { PlayIcon } from "lucide-react";
-
 import YouTube from "react-youtube";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { getMovieTrailerById } from "@/lib/Api/getMovieTrailerById";
 import {
   Dialog,
@@ -10,7 +8,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@radix-ui/react-dialog";
-export const MovieTrailer = ({ movieId }: { movieId: string }) => {
+import { Button } from "./ui/button";
+export const MovieTrailer = ({ movieId }: { movieId: number }) => {
   const [trailer, setTrailer] = useState([]);
   useEffect(() => {
     const getMovieTrailer = async () => {

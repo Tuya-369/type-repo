@@ -9,7 +9,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from "./ui/carousel";
 
 export const MovieCarousel = () => {
   const [nowPlaying, setNowPlaying] = useState<MovieType[]>([]);

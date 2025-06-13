@@ -1,5 +1,5 @@
+import { getproducNAmeID } from "@/lib/Api/getproducNAmeID";
 import { useEffect, useState } from "react";
-import { getproducNAmeID } from "@/getproducNAmeID";
 
 export const DirectorName = ({ movie }) => {
   const [director, setDirector] = useState("");

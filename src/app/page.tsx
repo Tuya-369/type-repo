@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { Header } from "./Components/Header";
-import { MovieCarousel } from "./Components/MovieCarousel";
-import { UpcomingMovie } from "./Components/Upcoming";
-import { TopRated } from "./Components/TopRatting";
-import { Popular } from "./Components/Popular";
+import { Header } from "../Components/Header";
+import { MovieCarousel } from "../Components/MovieCarousel";
+import { UpcomingMovie } from "../Components/Upcoming";
+import { TopRated } from "../Components/TopRatting";
+import { Popular } from "../Components/Popular";
 
 export default function Home() {
   return (

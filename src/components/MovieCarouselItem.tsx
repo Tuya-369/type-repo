@@ -27,7 +27,7 @@ export const MovieCarouselItem = ({ movie }: { movie: MovieType }) => {
           </div>
           <div className="md:text-white md:w-[302px] pt-4">
             <p>{movie.overview}</p>
-            <div className="flex p-4">
+            <div className="flex justify center p-4">
               <button>
                 <MovieTrailer movieId={movie.id} />
               </button>
