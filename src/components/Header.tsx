@@ -1,6 +1,7 @@
 import { HomeIcon } from "lucide-react";
 import Link from "next/link";
-import { HeaderGenre } from "./HeaderGenre";
+import { HeaderGenre } from "../components/HeaderGenre";
+import { HeaderSearch } from "./search/Search";
 
 export const Header = () => {
   return (
@@ -12,7 +13,7 @@ export const Header = () => {
       <div className="ml-24">
         <HeaderGenre />
       </div>
-      {/* <HeaderSearch /> */}
+      <HeaderSearch />
     </div>
   );
 };

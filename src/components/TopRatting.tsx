@@ -2,8 +2,9 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { LouderCard } from "./louder/Louder.Card";
-import { Moviecart } from "./MovieCard";
+import { LouderCard } from "@/components/louder/Louder.Card";
+import { Moviecart } from "@/components/MovieCard";
+
 export const TopRated = () => {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +26,7 @@ export const TopRated = () => {
     } catch (error) {
       console.error("Failed to fetch top rated movies:", error);
     } finally {
-      setLoading(true);
+      setLoading(false); // ✅ энд өмнө нь setLoading(true) байсан
     }
   };
 
@@ -43,11 +44,16 @@ export const TopRated = () => {
           </button>
         </Link>
       </div>
-      <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-        {topRatedMovies.slice(0, 9).map((movie) => (
-          <Moviecart key={movie} movie={movie} />
-        ))}
-      </div>
+
+      {loading ? (
+        <LouderCard /> // Optional: Та ачааллаж буй үедээ ийм зүйл харуулахыг хүсч байж магадгүй
+      ) : (
+        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {topRatedMovies.slice(0, 9).map((movie) => (
+            <Moviecart key={movie.id} movie={movie} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

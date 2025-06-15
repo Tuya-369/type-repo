@@ -1,20 +1,19 @@
-import { Button } from "@/components/ui/button";
-import { MovieType } from "@/types";
-import { useRouter } from "next/router";
+"use client";
 
-export const DetailButton = ({ movie }: { movie: MovieType }) => {
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Movie } from "@/types";
+
+export const DetailButton = ({ movie }: { movie: Movie }) => {
+  const router = useRouter();
+
+  const handleClick = (id: number, name: string) => {
+    router.push(`/genre?id=${id}&name=${encodeURIComponent(name)}`);
+  };
+
   return (
-    <div className="flex flex-wrap gap-2 mb-4">
-      {movie?.genres?.map((genre, index) => (
-        <Button
-          key={index}
-          className="h-8 px-4 text-xs text-text-foreground"
-          variant="outline"
-          onClick={() => handleClick(genre.id, genre.name)}
-        >
-          {genre.name}
-        </Button>
-      ))}
-    </div>
+    <Button onClick={() => handleClick(movie.id, movie.name)}>
+      Details
+    </Button>
   );
 };

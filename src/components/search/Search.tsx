@@ -1,11 +1,25 @@
+"use client";
+
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
 import { SearchResult } from "./SearchResult";
 import { Input } from "@/components/ui/input";
+import { useEffect, useState } from "react";
+
+interface Movie {
+  id: number;
+  original_title: string;
+  poster_path: string | null;
+  popularity: number;
+  release_date: string;
+}
+
+interface MovieResponse {
+  results: Movie[];
+}
 
 export const HeaderSearch = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<MovieResponse>({ results: [] });
 
   const SearchMovie = async () => {
     try {
@@ -30,6 +44,8 @@ export const HeaderSearch = () => {
     const delayDebounce = setTimeout(() => {
       if (searchValue.trim() !== "") {
         SearchMovie();
+      } else {
+        setMovies({ results: [] });
       }
     }, 500);
 
@@ -45,8 +61,8 @@ export const HeaderSearch = () => {
         placeholder="Search..."
         className={cn("pl-[38px] border-none shadow-none")}
       />
-      {movies.results?.length > 0 && (
-        <SearchResult movies={movies} searchValue={searchValue} />
+      {movies.results.length > 0 && searchValue.trim() !== "" && (
+        <SearchResult movies={movies} setSearchValue={setSearchValue} />
       )}
     </div>
   );

@@ -1,6 +1,6 @@
-import { PlayIcon } from "lucide-react";
-import YouTube from "react-youtube";
 import { useEffect, useState } from "react";
+import YouTube from "react-youtube";
+import { PlayIcon } from "lucide-react";
 import { getMovieTrailerById } from "@/lib/Api/getMovieTrailerById";
 import {
   Dialog,
@@ -8,9 +8,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@radix-ui/react-dialog";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
+
+// 🎥 Trailer video-ийн structure тодорхойлох type
+type Video = {
+  id: string;
+  name: string;
+  key: string;
+  site: string;
+  type: string;
+};
+
 export const MovieTrailer = ({ movieId }: { movieId: number }) => {
-  const [trailer, setTrailer] = useState([]);
+  const [trailer, setTrailer] = useState<Video[]>([]);
+
   useEffect(() => {
     const getMovieTrailer = async () => {
       if (!movieId) return;
@@ -18,21 +29,26 @@ export const MovieTrailer = ({ movieId }: { movieId: number }) => {
         const data = await getMovieTrailerById(movieId);
         setTrailer(data.results || []);
       } catch (error) {
-        console.log("Failed to fetch movie trailer:", error);
+        console.error("Failed to fetch movie trailer:", error);
       }
     };
     getMovieTrailer();
   }, [movieId]);
+
   const officialTrailer = trailer.find(
     (video) => video.name === "Official Trailer"
   );
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="absolute mt-10" variant="secondary">
-          <PlayIcon className="gap-2" /> Watch Trailer
+        <Button asChild className="absolute mt-10" variant="secondary">
+          <span className="flex items-center gap-2">
+            <PlayIcon /> Watch Trailer
+          </span>
         </Button>
       </DialogTrigger>
+
       <DialogTitle />
       <DialogContent className="sm:max-w-fit">
         {officialTrailer ? (

@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { Moviecart } from "./MovieCard";
 import { ArrowRight } from "lucide-react";
-import { LouderCard } from "./louder/Louder.Card";
 import { useEffect, useState } from "react";
-
+import { LouderCard } from "@/components/louder/Louder.Card";
+import { Moviecart } from "@/components/MovieCard";
+import { Movie  } from "@/types";
 export const UpcomingMovie = () => {
-  const [upcomingMovies, setUpcomingMovie] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [upcomingMovies, setUpcomingMovie] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   const getUpcoming = async () => {
     try {
@@ -53,7 +53,9 @@ export const UpcomingMovie = () => {
         {loading && <LouderCard />}
 
         {!loading &&
-          upcomingMovies?.map((movie) => <Moviecart movie={movie} />)}
+          upcomingMovies.map((movie) => (
+            <Moviecart key={movie.id} movie={movie} />
+          ))}
       </div>
     </div>
   );

@@ -1,13 +1,27 @@
 import { Separator } from "@radix-ui/react-dropdown-menu";
 import { ArrowRight, Star } from "lucide-react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
-export const SearchResultCard = ({ movie, setSearchValue }) => {
-  console.log("movieeee", movie);
+interface Movie {
+  id: number;
+  original_title: string;
+  poster_path: string | null;
+  popularity: number;
+  release_date: string;
+}
+
+interface SearchResultCardProps {
+  movie: Movie;
+  setSearchValue: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export const SearchResultCard = ({ movie, setSearchValue }: SearchResultCardProps) => {
   const { original_title, poster_path, popularity, release_date, id } = movie;
   const router = useRouter();
 
-  const imgUrl = `${process.env.NEXT_PUBLIC_TMDB_IMAGE_SERVICE_URL}${poster_path}`;
+  const imgUrl = poster_path
+    ? `${process.env.NEXT_PUBLIC_TMDB_IMAGE_SERVICE_URL}${poster_path}`
+    : "/placeholder-image.png"; // Хэрэв зураг байхгүй бол сэндвич зураг
 
   const handleSeemore = () => {
     router.push(`/details/${id}`);

@@ -2,7 +2,8 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Moviecart } from "./MovieCard";
+import { Moviecart } from "@/components/MovieCard";
+
 export const Popular = () => {
   const [popularMovies, setPopularMovies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,7 +49,7 @@ export const Popular = () => {
       ) : (
         <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
           {popularMovies.slice(0, 9).map((movie) => (
-            <Moviecart key={movie} movie={movie} />
+            <Moviecart key={movie.id} movie={movie} />
           ))}
         </div>
       )}
